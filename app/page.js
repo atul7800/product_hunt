@@ -1,11 +1,18 @@
-import Image from "next/image";
+"use client";
+import {useEffect} from "react";
+import {useRouter} from "next/navigation";
 
 export default function Home() {
-  return (
-    <>
-      <h1 className="text-5xl text-center p-8 bg-indigo-400 text-white">
-        Hello
-      </h1>
-    </>
-  );
+  const router = useRouter();
+
+  useEffect(() => {
+    const user = localStorage.getItem("user");
+    if (user) {
+      router.replace("/explore");
+    } else {
+      router.replace("/login");
+    }
+  }, []);
+
+  return null; // No need to render anything
 }
